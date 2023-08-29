@@ -8,8 +8,12 @@ function getComputerChoice() {
 playerScore = 0
 computerScore = 0
 
+
+
 function playRound(playerSelection, computerSelection) {
     player = playerSelection.toLowerCase();
+
+    console.log(playerSelection + " " + computerSelection)
     if (player == computerSelection) {
         return "tie!"
     } else if (player === "rock" && computerSelection === "scissors"){
@@ -34,26 +38,63 @@ function playRound(playerSelection, computerSelection) {
         return "Invalid input try again."
     }
 }
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissor = document.querySelector('#scissor');
+
+const container = document.querySelector('#container')
+const score = document.createElement('div')
+score.classList.add('score') //adds class score to score div.
+
+const buttons = document.querySelectorAll('button');
+
 
 function game() {
     playerScore = 0
     computerScore = 0
-    for (let i = 0; i < 5; i++) {
-        player = prompt("Enter your rock paper scissor")
-        comChoice = getComputerChoice()
-        console.log(player + " " + comChoice)
-        playRound(player, comChoice)
-    }
-    console.log(playerScore + " " + computerScore);
 
+    
+    rock.addEventListener('click', function(e) {
+        playRound("rock", getComputerChoice())
+        score.textContent = "Player Score: " + playerScore + " " + "Computer Score: " + computerScore
+        container.appendChild(score)
+        if (playerScore >= 5) {
+            score.textContent = "Player wins!"
+            container.appendChild(score)
+        
+        } else if (computerScore >= 5) {
+            score.textContent = "U lose git gud"
+            container.appendChild(score)
+        }
+    })
+    paper.addEventListener('click', function(e) {
+        playRound("rock", getComputerChoice())
+        score.textContent = "Player Score: " + playerScore + " " + "Computer Score: " + computerScore
+        container.appendChild(score)
+        if (playerScore >= 5) {
+            score.textContent = "Player wins!"
+            container.appendChild(score)
+        
+        } else if (computerScore >= 5) {
+            score.textContent = "U lose git gud"
+            container.appendChild(score)
+        }
+    })
+    scissor.addEventListener('click', function(e) {
+        
+        playRound("scissors", getComputerChoice())
+        score.textContent = "Player Score: " + playerScore + " " + "Computer Score: " + computerScore
+        container.appendChild(score)
+        if (playerScore >= 5) {
+            score.textContent = "Player wins!"
+            container.appendChild(score)
+        
+        } else if (computerScore >= 5) {
+            score.textContent = "U lose git gud"
+            container.appendChild(score)
+        }
+    })
 
-    if (playerScore > computerScore) {
-        console.log("player wins!")
-    } else if (playerScore === computerScore) {
-        console.log("player wins!")
-    } else {
-        console.log("Computer wins!")
-    }
 }
 
 game()
